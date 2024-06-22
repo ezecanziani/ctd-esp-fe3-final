@@ -95,7 +95,7 @@ form{
 }
 
 table {
- border-collapse: collapse;
+border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     display: table;
@@ -119,4 +119,26 @@ tr:nth-child(even) {
 }
 .dark > a {
   color: white;
+}
+.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+.dark-theme {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+}
+.navbar, .footer, .card, .detail, .contact, .favs {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.light-theme .navbar, .light-theme .footer, .light-theme .card, .light-theme .detail, .light-theme .contact, .light-theme .favs {
+  background-color: #f0f0f0;
+}
+
+.dark-theme .navbar, .dark-theme .footer, .dark-theme .card, .dark-theme .detail, .dark-theme .contact, .dark-theme .favs {
+  background-color: #333333;
 }

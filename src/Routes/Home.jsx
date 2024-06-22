@@ -1,17 +1,28 @@
-import React from 'react'
-import Card from '../Components/Card'
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import React, { useEffect } from 'react';
+import { useAppContext } from '../context/AppContext';
+import Card from '../Components/Card'; 
 
 const Home = () => {
-  return (
-    <main className="" >
-      <h1>Home</h1>
-      <div className='card-grid'>
-        {/* Aqui deberias renderizar las cards */}
-      </div>
-    </main>
-  )
-}
+  const { state, dispatch } = useAppContext();
+  const { dentists, theme } = state;
 
-export default Home
+  useEffect(() => {
+    const fetchDentists = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data = await response.json();
+      dispatch({ type: 'SET_DENTISTS', payload: data });
+    };
+
+    fetchDentists();
+  }, [dispatch]);
+
+  return (
+    <div className={`home ${theme}-theme`}>
+      {dentists.map(dentist => (
+        <Card key={dentist.id} dentist={dentist} />
+      ))}
+    </div>
+  );
+};
+
+export default Home;
